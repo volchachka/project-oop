@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "types": ["lua-types/5.4", "luacraft-1.26/all"],
+    "strict": true,
+    "rootDir": "./src",
+    "outDir": "D:\\Warcraft 3 Frozen Throne",
+    "module": "CommonJS"
+  },
+  "tstl": {
+    "luaTarget": "5.3",
+    "sourceMapTraceback": true
+  },
+  "strictFunctionTypes": true
+}
