@@ -12,7 +12,7 @@ const resp = (e: UnitEvent) => {
   e.detail.triggerUnit.reviveHero(0, 0, true);
 };
 
-const customUnit = new CustomTestUnit(Player(1), FourCC("Hpal"), 0, 0, 0);
+const customUnit = new CustomTestUnit(Player(5), FourCC("Hpal"), 0, 0, 0);
 const unit = new Unit(Player(0), FourCC("Hpal"), 0, 0, 0);
 
 unit.lifeRegen += 10;
