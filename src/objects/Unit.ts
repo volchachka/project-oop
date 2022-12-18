@@ -9,13 +9,11 @@ import { UnitEvent } from "./events/unit/UnitEvent";
 const objectStorage = ObjectStorage.getInstance();
 const unitEventProcessor = UnitEventProcessor.getInstance();
 
-declare function type(handle: any): string;
-
 export class Unit extends Handle {
   constructor(handle: HUnit);
-  constructor(handle: HPlayer, unit: number, x: number, y: number, face: number);
-  constructor(handle: HPlayer, unit: number, x: number, y: number, face: number, corpse: boolean);
-  constructor(handle: HPlayer, unitName: string, x: number, y: number, face: number);
+  constructor(owner: HPlayer, unit: number, x: number, y: number, face: number);
+  constructor(owner: HPlayer, unit: number, x: number, y: number, face: number, corpse: boolean);
+  constructor(owner: HPlayer, unitName: string, x: number, y: number, face: number);
   constructor(handleOrPlayer: any, unit?: undefined, x?: undefined, y?: undefined, face?: undefined, corpse?: undefined);
   public constructor(handleOrPlayer: any, unit?: number | string, x?: number, y?: number, face?: number, corpse?: boolean) {
     if (type(handleOrPlayer) === "unit") {
@@ -37,6 +35,7 @@ export class Unit extends Handle {
     return this.handle as HUnit;
   }
 
+  public addEventListener(type: "remove", listener: (event: RemoveHandleEvent<Unit>) => void, once?: EventSettings): void;
   public addEventListener(type: UnitEventType, listener: (event: UnitEvent) => void, once?: EventSettings): void;
   public addEventListener(type: string, listener: (event: Event) => void, once?: EventSettings): void {
     if (unitEventProcessor.support(type)) {
@@ -44,15 +43,6 @@ export class Unit extends Handle {
       this.registerEventListener(type, listener, once);
     } else {
       super.addEventListener(type, listener, once);
-    }
-  }
-
-  public remove() {
-    if (this.isAlive()) {
-      this.dispatchEvent(new RemoveHandleEvent(this));
-      RemoveUnit(this.handle as HUnit);
-
-      this.handle = null;
     }
   }
 
