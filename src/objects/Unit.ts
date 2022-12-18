@@ -5,6 +5,8 @@ import { UnitEventProcessor, UnitEventType } from "../services/UnitEventProcesso
 import { EventSettings } from "../services/EventTarget";
 import { ObjectStorage } from "../services/ObjectStorage";
 import { UnitEvent } from "./events/unit/UnitEvent";
+import { UnitDeathEvent } from "./events/unit/UnitDeathEvent";
+import { UnitResearchEvent } from "./events/unit/UnitResearchEvent";
 
 const objectStorage = ObjectStorage.getInstance();
 const unitEventProcessor = UnitEventProcessor.getInstance();
@@ -37,6 +39,10 @@ export class Unit extends Handle {
 
   public addEventListener(type: "remove", listener: (event: RemoveHandleEvent<Unit>) => void, once?: EventSettings): void;
   public addEventListener(type: UnitEventType, listener: (event: UnitEvent) => void, once?: EventSettings): void;
+  public addEventListener(type: "death", listener: (event: UnitDeathEvent) => void, once?: EventSettings): void;
+  public addEventListener(type: "researchstart", listener: (event: UnitResearchEvent) => void, once?: EventSettings): void;
+  public addEventListener(type: "researchcancel", listener: (event: UnitResearchEvent) => void, once?: EventSettings): void;
+  public addEventListener(type: "researchfinish", listener: (event: UnitResearchEvent) => void, once?: EventSettings): void;
   public addEventListener(type: string, listener: (event: Event) => void, once?: EventSettings): void {
     if (unitEventProcessor.support(type)) {
       unitEventProcessor.subscribe(type, this);
