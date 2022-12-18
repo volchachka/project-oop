@@ -16,6 +16,7 @@ export type UnitEventType =
   | "targetinrange"
   | "attacked"
   | "rescued"
+  | "constructstart"
   | "constructcancel"
   | "constructfinish"
   | "upgradestart"
@@ -40,7 +41,15 @@ export type UnitEventType =
   | "dropitem"
   | "pickupitem "
   | "useitem"
-  | "loaded";
+  | "loaded"
+  | "sellitem"
+  | "sellunit"
+  | "changeowner"
+  | "spellchannel"
+  | "spellcast"
+  | "spelleffect"
+  | "spellfinish"
+  | "spellendcast";
 
 const stringToHandle: {
   [key: string]: HUnitEvent;
@@ -82,6 +91,15 @@ const stringToHandle: {
   pickupitem: EVENT_UNIT_PICKUP_ITEM,
   useitem: EVENT_UNIT_USE_ITEM,
   loaded: EVENT_UNIT_LOADED,
+  sellitem: EVENT_UNIT_SELL_ITEM,
+  sellunit: EVENT_UNIT_SELL,
+  changeowner: EVENT_UNIT_CHANGE_OWNER,
+  spellchannel: EVENT_UNIT_SPELL_CHANNEL,
+  spellcast: EVENT_UNIT_SPELL_CAST,
+  spelleffect: EVENT_UNIT_SPELL_EFFECT,
+  spellfinish: EVENT_UNIT_SPELL_FINISH,
+  spellendcast: EVENT_UNIT_SPELL_ENDCAST,
+
 };
 
 type UnitTriggerInfo = {
