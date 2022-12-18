@@ -22,3 +22,7 @@ customUnit.addEventListener("selected", dumpType);
 
 unit.addEventListener("death", resp);
 customUnit.addEventListener("death", resp);
+
+unit.addEventListener('researchstart', (e) => {
+  e.detail.researchId
+})
