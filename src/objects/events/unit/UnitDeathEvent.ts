@@ -1,8 +1,9 @@
 import { ObjectStorage } from "../../../services/ObjectStorage";
+import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitDeathEventDetail extends UnitEventDetail {
-  killingUnit: number;
+  killingUnit: Unit;
 }
 
 export interface UnitDeathEvent {
