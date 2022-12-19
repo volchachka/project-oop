@@ -3,11 +3,9 @@ import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitIssuedPointOrderEventDetail extends UnitEventDetail {
-  issuedOrderId: number,
-  orderPointX: number,
-  orderPointY: number,
-  //TODO: Когда будет класс Location заменить на Location
-  orderLocation: HLocation,
+  issuedOrderId: number;
+  orderPointX: number;
+  orderPointY: number;
 }
 
 export interface UnitIssuedPointOrderEvent {
@@ -22,7 +20,6 @@ const snapshotUnitEvent = (): UnitIssuedPointOrderEventDetail => {
     issuedOrderId: GetIssuedOrderId(),
     orderPointX: GetOrderPointX(),
     orderPointY: GetOrderPointY(),
-    orderLocation: objectStorage.getOrWrap(GetOrderPointLoc()),
   };
 };
 

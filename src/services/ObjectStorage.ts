@@ -55,7 +55,13 @@ export class ObjectStorage {
     return this.storedHandles.get(handle)?.object;
   }
 
-  public getOrWrap<T>(handle: HHandle): T {
+  public getOrWrap<T extends Handle>(handle: HHandle) : T
+  public getOrWrap<T extends Handle>(handle: null) : null
+  public getOrWrap<T extends Handle>(handle: HHandle | null): T | null {
+
+    if(handle == null)
+      return null;
+
     const storedObject = this.storedHandles.get(handle);
 
     if (storedObject) return storedObject?.object as T;

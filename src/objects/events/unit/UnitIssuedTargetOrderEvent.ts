@@ -3,14 +3,14 @@ import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitIssuedTargetOrderEventDetail extends UnitEventDetail {
-  issuedOrderId: number,
+  issuedOrderId: number;
   //TODO: Когда будет класс Widget заменить на Widget
-  orderTarget: HWidget,
-  orderTargetUnit: Unit,
+  orderTarget: HWidget;
+  orderTargetUnit: Unit;
   //TODO: Когда будет класс Item заменить на Item
-  orderTargetItem: HItem,
+  orderTargetItem: HItem;
   //TODO: Когда будет класс Destructable заменить на Destructable
-  orderTargetDestructable: HDestructable,
+  orderTargetDestructable: HDestructable;
 }
 
 export interface UnitIssuedTargetOrderEvent {
@@ -23,10 +23,10 @@ const snapshotUnitEvent = (): UnitIssuedTargetOrderEventDetail => {
   return {
     triggerUnit: objectStorage.getOrWrap(GetTriggerUnit()),
     issuedOrderId: GetIssuedOrderId(),
-    orderTarget: objectStorage.getOrWrap(GetOrderTarget()),
+    orderTarget: GetOrderTarget(),
     orderTargetUnit: objectStorage.getOrWrap(GetOrderTargetUnit()),
-    orderTargetDestructable: objectStorage.getOrWrap(GetOrderTargetDestructable()),
-    orderTargetItem: objectStorage.getOrWrap(GetOrderTargetItem()),
+    orderTargetDestructable: GetOrderTargetDestructable(),
+    orderTargetItem: GetOrderTargetItem(),
   };
 };
 

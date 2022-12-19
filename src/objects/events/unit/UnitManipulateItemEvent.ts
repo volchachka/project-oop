@@ -4,7 +4,7 @@ import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitManipulatingItemEventDetail extends UnitEventDetail {
   //TODO: Когда будет класс Item, заменить на Item
-  manipulatingItem: HItem,
+  manipulatingItem: HItem;
 }
 
 export interface UnitManipulatingItemEvent {
@@ -16,7 +16,7 @@ const objectStorage = ObjectStorage.getInstance();
 const snapshotUnitEvent = (): UnitManipulatingItemEventDetail => {
   return {
     triggerUnit: objectStorage.getOrWrap(GetTriggerUnit()),
-    manipulatingItem: objectStorage.getOrWrap(GetManipulatedItem()),
+    manipulatingItem: GetManipulatedItem(),
   };
 };
 

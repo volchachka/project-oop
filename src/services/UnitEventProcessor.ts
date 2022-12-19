@@ -2,6 +2,32 @@ import { Event } from "../objects/events/Event";
 import { Unit } from "../objects/Unit";
 import { ObjectStorage } from "./ObjectStorage";
 import { UnitEvent } from "../objects/events/unit/UnitEvent";
+import { UnitDamagedEvent } from "./../objects/events/unit/UnitDamagedEvent";
+import { UnitDamagingEvent } from "./../objects/events/unit/UnitDamagingEvent";
+import { UnitDeathEvent } from "./../objects/events/unit/UnitDeathEvent";
+import { UnitDecayEvent } from "./../objects/events/unit/UnitDecayEvent";
+import { UnitDetectEvent } from "./../objects/events/unit/UnitDetectedEvent";
+import { UnitHiddenEvent } from "./../objects/events/unit/UnitHiddenEvent";
+import { UnitSelectedEvent } from "./../objects/events/unit/UnitSelectedEvent";
+import { UnitDeselectedEvent } from "./../objects/events/unit/UnitDeselectedEvent";
+import { UnitAcquiredTargetEvent } from "./../objects/events/unit/UnitAcquiredTargetEvent";
+import { UnitTargetInRangeEvent } from "./../objects/events/unit/UnitTargetInRangeEvent";
+import { UnitAttackedEvent } from "./../objects/events/unit/UnitAttackedEvent";
+import { UnitUpgradeEvent } from "./../objects/events/unit/UnitUpgradeEvent";
+import { UnitSpellEvent } from "./../objects/events/unit/UnitSpellEvent";
+import { UnitChangeOwnerEvent } from "./../objects/events/unit/UnitChangeOwnerEvent";
+import { UnitSellUnitEvent } from "../objects/events/unit/UnitSellUnitEvent";
+import { UnitSellItemEvent } from "./../objects/events/unit/UnitSellItemEvent";
+import { UnitLoadedEvent } from "./../objects/events/unit/UnitLoadedEvent";
+import { UnitStartTrainEvent } from "./../objects/events/unit/UnitStartTrainEvent";
+import { UnitResearchEvent } from "./../objects/events/unit/UnitResearchEvent";
+import { UnitIssuedOrderEvent } from "./../objects/events/unit/UnitIssuedOrderEvent";
+import { UnitIssuedPointOrderEvent } from "./../objects/events/unit/UnitIssuedPointOrderEvent";
+import { UnitIssuedTargetOrderEvent } from "./../objects/events/unit/UnitIssuedTargetOrderEvent";
+import { UnitHeroLevelEvent } from "./../objects/events/unit/UnitHeroLevelEvent";
+import { UnitHeroSkillEvent } from "./../objects/events/unit/UnitHeroSkillEvent";
+import { UnitHeroReviveEvent } from "./../objects/events/unit/UnitHeroReviveEvent";
+import { UnitSummonEvent } from "./../objects/events/unit/UnitSummonEvent";
 
 export type UnitEventType =
   | "damaged"
@@ -34,7 +60,7 @@ export type UnitEventType =
   | "herolevel"
   | "heroskill"
   | "herorevivable"
-  | "herorevivestart "
+  | "herorevivestart"
   | "herorevivecancel"
   | "herorevivefinish"
   | "summon"
@@ -99,7 +125,6 @@ const stringToHandle: {
   spelleffect: EVENT_UNIT_SPELL_EFFECT,
   spellfinish: EVENT_UNIT_SPELL_FINISH,
   spellendcast: EVENT_UNIT_SPELL_ENDCAST,
-
 };
 
 type UnitTriggerInfo = {
@@ -137,7 +162,107 @@ export class UnitEventProcessor {
 
     TriggerRegisterUnitEvent(newTrigger, unit.toHandle(), stringToHandle[eventType]);
     TriggerAddAction(newTrigger, () => {
-      unit.dispatchEvent(new UnitEvent(eventType, null));
+      switch (eventType as UnitEventType) {
+        case "damaged":
+          unit.dispatchEvent(new UnitDamagedEvent(eventType, null));
+          break;
+        case "damaging":
+          unit.dispatchEvent(new UnitDamagingEvent(eventType, null));
+          break;
+        case "death":
+          unit.dispatchEvent(new UnitDeathEvent(eventType, null));
+          break;
+        case "decay":
+          unit.dispatchEvent(new UnitDecayEvent(eventType, null));
+          break;
+        case "detected":
+          unit.dispatchEvent(new UnitDetectEvent(eventType, null));
+          break;
+        case "hidden":
+          unit.dispatchEvent(new UnitHiddenEvent(eventType, null));
+          break;
+        case "selected":
+          unit.dispatchEvent(new UnitSelectedEvent(eventType, null));
+          break;
+        case "deselected":
+          unit.dispatchEvent(new UnitDeselectedEvent(eventType, null));
+          break;
+        case "acquiredtarget":
+          unit.dispatchEvent(new UnitAcquiredTargetEvent(eventType, null));
+          break;
+        case "targetinrange":
+          unit.dispatchEvent(new UnitTargetInRangeEvent(eventType, null));
+          break;
+        case "attacked":
+          unit.dispatchEvent(new UnitAttackedEvent(eventType, null));
+          break;
+        case "upgradestart":
+        case "upgradecancel":
+        case "upgradefinish":
+          unit.dispatchEvent(new UnitUpgradeEvent(eventType, null));
+          break;
+        case "trainstart":
+        case "traincancel":
+        case "trainfinish":
+          unit.dispatchEvent(new UnitStartTrainEvent(eventType, null));
+          break;
+        case "researchstart":
+        case "researchcancel":
+        case "researchfinish":
+          unit.dispatchEvent(new UnitResearchEvent(eventType, null));
+          break;
+        case "issuedorder":
+          unit.dispatchEvent(new UnitIssuedOrderEvent(eventType, null));
+          break;
+        case "issuedpointorder":
+          unit.dispatchEvent(new UnitIssuedPointOrderEvent(eventType, null));
+          break;
+        case "issuedtargetorder":
+          unit.dispatchEvent(new UnitIssuedTargetOrderEvent(eventType, null));
+          break;
+        case "herolevel":
+          unit.dispatchEvent(new UnitHeroLevelEvent(eventType, null));
+          break;
+        case "heroskill":
+          unit.dispatchEvent(new UnitHeroSkillEvent(eventType, null));
+          break;
+        case "herorevivable":
+        case "herorevivestart":
+        case "herorevivecancel":
+        case "herorevivefinish":
+          unit.dispatchEvent(new UnitHeroReviveEvent(eventType, null));
+          break;
+        case "summon":
+          unit.dispatchEvent(new UnitSummonEvent(eventType, null));
+          break;
+        case "researchcancel":
+        case "researchfinish":
+          unit.dispatchEvent(new UnitResearchEvent(eventType, null));
+          break;
+        case "spellchannel":
+        case "spellcast":
+        case "spelleffect":
+        case "spellfinish":
+        case "spellendcast":
+          unit.dispatchEvent(new UnitSpellEvent(eventType, null));
+          break;
+        case "changeowner":
+          unit.dispatchEvent(new UnitChangeOwnerEvent(eventType, null));
+          break;
+        case "sellunit":
+          unit.dispatchEvent(new UnitSellUnitEvent(eventType, null));
+          break;
+        case "sellitem":
+          unit.dispatchEvent(new UnitSellItemEvent(eventType, null));
+          break;
+        case "loaded":
+          unit.dispatchEvent(new UnitLoadedEvent(eventType, null));
+          break;
+
+        // Todo  constructcancel, constructfinish, dropitem, pickupitem, useitem
+        default:
+          unit.dispatchEvent(new UnitEvent(eventType, null));
+      }
     });
 
     registerUnitEvents[eventType] = newTrigger;

@@ -3,18 +3,18 @@ import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitSpellEventDetail extends UnitEventDetail {
-  spellId: number,
+  spellId: number;
   //TODO: когда будет класс Ability заменить на Ability
-  spell: HAbility,
+  spell: HAbility;
   //TODO: Когда будет класс Location заменить на Location
-  targetLocation: HLocation,
-  targetX: number,
-  targetY: number,
+  targetLocation: HLocation;
+  targetX: number;
+  targetY: number;
   //TODO: Когда будет класс Destructable, заменить на Destructable
-  targetDestructable: HDestructable,
+  targetDestructable: HDestructable;
   //TODO: Когда будет класс Item заменить на Item
-  targetItem: HItem,
-  targetUnit: Unit,  
+  targetItem: HItem;
+  targetUnit: Unit;
 }
 
 export interface UnitSpellEvent {
@@ -26,13 +26,13 @@ const objectStorage = ObjectStorage.getInstance();
 const snapshotUnitEvent = (): UnitSpellEventDetail => {
   return {
     triggerUnit: objectStorage.getOrWrap(GetTriggerUnit()),
-    spell: objectStorage.getOrWrap(GetSpellAbility()),
+    spell: GetSpellAbility(),
     spellId: GetSpellAbilityId(),
-    targetLocation: objectStorage.getOrWrap(GetSpellTargetLoc()),
+    targetLocation: GetSpellTargetLoc(),
     targetX: GetSpellTargetX(),
     targetY: GetSpellTargetY(),
-    targetDestructable: objectStorage.getOrWrap(GetSpellTargetDestructable()),
-    targetItem: objectStorage.getOrWrap(GetSpellTargetItem()),
+    targetDestructable: GetSpellTargetDestructable(),
+    targetItem: GetSpellTargetItem(),
     targetUnit: objectStorage.getOrWrap(GetSpellTargetUnit()),
   };
 };

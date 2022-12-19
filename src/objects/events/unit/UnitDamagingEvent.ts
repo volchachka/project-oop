@@ -3,17 +3,17 @@ import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitDamagingEventDetail extends UnitEventDetail {
-  target: Unit,
-  damage: number,
-  damageFlags: number,
-  damageAbilityId: number,
-  attackType: HAttackType,
-  damageType: HDamageType,
-  damageTypeFlags: number,
-  weaponType: HWeaponType,
-  isAttack: boolean,
-  isRanged: boolean,
-  preDamage: number,
+  target: Unit;
+  damage: number;
+  damageFlags: number;
+  damageAbilityId: number;
+  attackType: HAttackType;
+  damageType: HDamageType;
+  damageTypeFlags: number;
+  weaponType: HWeaponType;
+  isAttack: boolean;
+  isRanged: boolean;
+  preDamage: number;
 }
 
 export interface UnitDamagingEvent {
@@ -29,10 +29,10 @@ const snapshotUnitEvent = (): UnitDamagingEventDetail => {
     damage: GetEventDamage(),
     damageFlags: GetEventDamageFlags(),
     damageAbilityId: GetEventDamageAbilityId(),
-    attackType: objectStorage.getOrWrap(GetEventAttackType()),
-    damageType: objectStorage.getOrWrap(GetEventDamageType()),
+    attackType: GetEventAttackType(),
+    damageType: GetEventDamageType(),
     damageTypeFlags: GetEventDamageTypeFlags(),
-    weaponType: objectStorage.getOrWrap(GetEventWeaponType()),
+    weaponType: GetEventWeaponType(),
     isAttack: GetEventIsAttack(),
     isRanged: GetEventIsRanged(),
     preDamage: GetEventPreDamage(),

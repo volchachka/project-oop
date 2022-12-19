@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "eslint": "^8.30.0",
     "lua-types": "^2.13.0",
     "luacraft-1.26": "^1.0.11",
     "typescript": "^4.7.3",

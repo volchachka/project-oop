@@ -4,7 +4,7 @@ import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitChangeOwnerEventDetail extends UnitEventDetail {
   //TODO: Когда будет класс Player, заменить тип на Player
-  previewOwner: HPlayer,
+  previewOwner: HPlayer;
 }
 
 export interface UnitChangeOwnerEvent {
@@ -16,7 +16,7 @@ const objectStorage = ObjectStorage.getInstance();
 const snapshotUnitEvent = (): UnitChangeOwnerEventDetail => {
   return {
     triggerUnit: objectStorage.getOrWrap(GetTriggerUnit()),
-    previewOwner: objectStorage.getOrWrap(GetChangingUnitPrevOwner()),
+    previewOwner: GetChangingUnitPrevOwner(),
   };
 };
 
