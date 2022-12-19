@@ -6,4 +6,16 @@ export interface PlayerEventDetail{
     triggerPlayer:GamePlayer;
 }
 
-// Fucking Yaz'
+const objectStorage = ObjectStorage.getInstance();
+
+const snapshotPlayerEvent = (): PlayerEventDetail => {
+    return {
+        triggerPlayer: objectStorage.getOrWrap(GetTriggerPlayer()),
+    };
+};
+
+export class PlayerEvent extends Event {
+    constructor( type:string, detail: PlayerEventDetail | null ){
+        super( type, detail || snapshotPlayerEvent());
+    }
+}
