@@ -16,6 +16,8 @@ export class Handle extends EventTarget {
   public remove() {
     let isRemoved = false;
 
+    this.dispatchEvent(new RemoveHandleEvent(this));
+
     switch (type(this.handle)) {
       case "unit":
         RemoveUnit(this.handle as HUnit);
@@ -26,12 +28,18 @@ export class Handle extends EventTarget {
         DestroyTimer(this.handle as HTimer);
         isRemoved = true;
         break;
+
+      case "item":
+        RemoveItem(this.handle as HItem);
+        isRemoved = true;
+        break;
+
+      case "player":
+        throw new Error("Unable remove player");
     }
 
     if (isRemoved) {
       this.handle = null;
-
-      this.dispatchEvent(new RemoveHandleEvent(this));
     }
   }
 
