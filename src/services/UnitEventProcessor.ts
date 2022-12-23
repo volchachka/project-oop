@@ -28,6 +28,12 @@ import { UnitHeroLevelEvent } from "./../objects/events/unit/UnitHeroLevelEvent"
 import { UnitHeroSkillEvent } from "./../objects/events/unit/UnitHeroSkillEvent";
 import { UnitHeroReviveEvent } from "./../objects/events/unit/UnitHeroReviveEvent";
 import { UnitSummonEvent } from "./../objects/events/unit/UnitSummonEvent";
+import { UnitCancelConstructionEvent } from "../objects/events/unit/UnitCancelConstructionEvent";
+import { UnitFinishConstructionEvent } from "../objects/events/unit/UnitFinishConstructionEvent";
+import { UnitDropItemEvent } from "../objects/events/unit/UnitDropItemEvent";
+import { UnitUseItemEvent } from "../objects/events/unit/UnitUseItemEvent";
+import { UnitPickupItemEvent } from "../objects/events/unit/UnitPickupItemEvent";
+import { UnitStartConstructionEvent } from "../objects/events/unit/UnitStartConstructionEvent";
 
 export type UnitEventType =
   | "damaged"
@@ -65,7 +71,7 @@ export type UnitEventType =
   | "herorevivefinish"
   | "summon"
   | "dropitem"
-  | "pickupitem "
+  | "pickupitem"
   | "useitem"
   | "loaded"
   | "sellitem"
@@ -258,8 +264,24 @@ export class UnitEventProcessor {
         case "loaded":
           unit.dispatchEvent(new UnitLoadedEvent(eventType, null));
           break;
-
-        // Todo  constructcancel, constructfinish, dropitem, pickupitem, useitem
+        case "constructcancel":
+          unit.dispatchEvent(new UnitCancelConstructionEvent(eventType, null));
+          break;
+        case "constructfinish":
+          unit.dispatchEvent(new UnitFinishConstructionEvent(eventType, null));
+          break;
+        case "constructstart":
+          unit.dispatchEvent(new UnitStartConstructionEvent(eventType, null));
+          break;
+        case "dropitem":
+          unit.dispatchEvent(new UnitDropItemEvent(eventType, null));
+          break;
+        case "pickupitem":
+          unit.dispatchEvent(new UnitPickupItemEvent(eventType, null));
+          break;
+        case "useitem": 
+          unit.dispatchEvent(new UnitUseItemEvent(eventType, null));
+          break;
         default:
           unit.dispatchEvent(new UnitEvent(eventType, null));
       }
