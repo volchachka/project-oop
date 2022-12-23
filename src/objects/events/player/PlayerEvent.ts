@@ -18,4 +18,4 @@ export class PlayerEvent extends Event {
     constructor( type:string, detail: PlayerEventDetail | null ){
         super( type, detail || snapshotPlayerEvent());
     }
-}
+};
