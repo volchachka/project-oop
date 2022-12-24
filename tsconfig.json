@@ -6,7 +6,7 @@
     "types": ["lua-types/5.4", "luacraft-1.26/all"],
     "strict": true,
     "rootDir": "./src",
-    "outDir": "D:\\Warcraft 3 Frozen Throne",
+    "outDir": "./dist",
     "module": "CommonJS"
   },
   "tstl": {

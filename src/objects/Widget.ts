@@ -13,80 +13,97 @@ export class Widget extends Handle {
   /// Functions
   ///
 
-  public setTexture(textureName: string, textureIndex: number): void {
-    return SetWidgetTexture(this.toHandle(), textureName, textureIndex);
+  public setTexture(textureName: string, textureIndex: number): this {
+    SetWidgetTexture(this.toHandle(), textureName, textureIndex);
+    return this;
   }
 
   public getVertexColour(): number {
     return GetWidgetVertexColour(this.toHandle());
   }
 
-  public addIndicator(red: number, green: number, blue: number, alpha: number): void {
-    return AddIndicator(this.toHandle(), red, green, blue, alpha);
+  public addIndicator(red: number, green: number, blue: number, alpha: number): this {
+    AddIndicator(this.toHandle(), red, green, blue, alpha);
+    return this;
   }
 
-  public setPosition(x: number, y: number): void {
-    return SetWidgetPosition(this.toHandle(), x, y);
+  public setPosition(x: number, y: number): this {
+    SetWidgetPosition(this.toHandle(), x, y);
+    return this;
   }
 
-  public setSpaceRotation(yaw: number, pitch: number, roll: number, eulerOrder: number): void {
-    return SetWidgetSpaceRotation(this.toHandle(), yaw, pitch, roll, eulerOrder);
+  public setSpaceRotation(yaw: number, pitch: number, roll: number, eulerOrder: number): this {
+    SetWidgetSpaceRotation(this.toHandle(), yaw, pitch, roll, eulerOrder);
+    return this;
   }
 
-  public setAnimationWithRarity(animation: string, rarity: HRarityControl): void {
-    return SetWidgetAnimationWithRarity(this.toHandle(), animation, rarity);
+  public setAnimationWithRarity(animation: string, rarity: HRarityControl): this {
+    SetWidgetAnimationWithRarity(this.toHandle(), animation, rarity);
+    return this;
   }
 
-  public setReplaceableTexture(textureName: string, textureIndex: number): void {
-    return SetWidgetReplaceableTexture(this.toHandle(), textureName, textureIndex);
+  public setReplaceableTexture(textureName: string, textureIndex: number): this {
+    SetWidgetReplaceableTexture(this.toHandle(), textureName, textureIndex);
+    return this;
   }
 
-  public setModelEx(modelFile: string, playerId: number): void {
-    return SetWidgetModelEx(this.toHandle(), modelFile, playerId);
+  public setModelEx(modelFile: string, playerId: number): this {
+    SetWidgetModelEx(this.toHandle(), modelFile, playerId);
+    return this;
   }
 
-  public setModel(modelFile: string): void {
-    return SetWidgetModel(this.toHandle(), modelFile);
+  public setModel(modelFile: string): this {
+    SetWidgetModel(this.toHandle(), modelFile);
+    return this;
   }
 
-  public setAnimationWithRarityByIndex(animIndex: number, rarity: HRarityControl): void {
-    return SetWidgetAnimationWithRarityByIndex(this.toHandle(), animIndex, rarity);
+  public setAnimationWithRarityByIndex(animIndex: number, rarity: HRarityControl): this {
+    SetWidgetAnimationWithRarityByIndex(this.toHandle(), animIndex, rarity);
+    return this;
   }
 
-  public setMaterialTexture(textureName: string, materialId: number, textureIndex: number): void {
-    return SetWidgetMaterialTexture(this.toHandle(), textureName, materialId, textureIndex);
+  public setMaterialTexture(textureName: string, materialId: number, textureIndex: number): this {
+    SetWidgetMaterialTexture(this.toHandle(), textureName, materialId, textureIndex);
+    return this;
   }
 
-  public queueAnimationByIndex(animIndex: number): void {
-    return QueueWidgetAnimationByIndex(this.toHandle(), animIndex);
+  public queueAnimationByIndex(animIndex: number): this {
+    QueueWidgetAnimationByIndex(this.toHandle(), animIndex);
+    return this;
   }
 
   public getFacing(): number {
     return GetWidgetFacing(this.toHandle());
   }
 
-  public queueAnimation(animation: string): void {
-    return QueueWidgetAnimation(this.toHandle(), animation);
+  public queueAnimation(animation: string): this {
+    QueueWidgetAnimation(this.toHandle(), animation);
+    return this;
   }
 
-  public setFacing(facing: number, isInstant: boolean): void {
-    return SetWidgetFacing(this.toHandle(), facing, isInstant);
+  public setFacing(facing: number, isInstant: boolean): this {
+    SetWidgetFacing(this.toHandle(), facing, isInstant);
+    return this;
   }
 
-  public setVertexColour(red: number, green: number, blue: number, alpha: number): void {
-    return SetWidgetVertexColour(this.toHandle(), red, green, blue, alpha);
+  public setVertexColour(red: number, green: number, blue: number, alpha: number): this {
+    SetWidgetVertexColour(this.toHandle(), red, green, blue, alpha);
+    return this;
   }
 
-  public setAnimationByIndex(animIndex: number): void {
-    return SetWidgetAnimationByIndex(this.toHandle(), animIndex);
+  public setAnimationByIndex(animIndex: number): this {
+    SetWidgetAnimationByIndex(this.toHandle(), animIndex);
+    return this;
   }
 
-  public setOrientation(yaw: number, pitch: number, roll: number): void {
-    return SetWidgetOrientation(this.toHandle(), yaw, pitch, roll);
+  public setOrientation(yaw: number, pitch: number, roll: number): this {
+    SetWidgetOrientation(this.toHandle(), yaw, pitch, roll);
+    return this;
   }
 
-  public setAnimation(animation: string): void {
-    return SetWidgetAnimation(this.toHandle(), animation);
+  public setAnimation(animation: string): this {
+    SetWidgetAnimation(this.toHandle(), animation);
+    return this;
   }
 
   ///
