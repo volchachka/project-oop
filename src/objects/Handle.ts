@@ -1,9 +1,20 @@
 import { EventCallback, EventSettings, EventTarget } from "../services/EventTarget";
 import { RemoveHandleEvent } from "./events/RemoveHandleEvent";
 
+export type Dispatcher<T, S> = (currentValue: T, arg: S) => T;
+export type Setter<T, S> = T | Dispatcher<T, S>;
+
 export interface Handle {
   [key: string]: any;
 }
+
+export interface NullHandle {
+  toHandle: () => null;
+}
+
+export const Null: NullHandle = {
+  toHandle: () => null,
+};
 
 export class Handle extends EventTarget {
   protected handle: HHandle | null;
