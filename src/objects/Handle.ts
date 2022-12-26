@@ -1,9 +1,20 @@
 import { EventCallback, EventSettings, EventTarget } from "../services/EventTarget";
 import { RemoveHandleEvent } from "./events/RemoveHandleEvent";
 
+export type Dispatcher<T, S> = (currentValue: T, arg: S) => T;
+export type Setter<T, S> = T | Dispatcher<T, S>;
+
 export interface Handle {
   [key: string]: any;
 }
+
+export interface NullHandle {
+  toHandle: () => null;
+}
+
+export const Null: NullHandle = {
+  toHandle: () => null,
+};
 
 export class Handle extends EventTarget {
   protected handle: HHandle | null;
@@ -16,6 +27,8 @@ export class Handle extends EventTarget {
   public remove() {
     let isRemoved = false;
 
+    this.dispatchEvent(new RemoveHandleEvent(this));
+
     switch (type(this.handle)) {
       case "unit":
         RemoveUnit(this.handle as HUnit);
@@ -26,12 +39,18 @@ export class Handle extends EventTarget {
         DestroyTimer(this.handle as HTimer);
         isRemoved = true;
         break;
+
+      case "item":
+        RemoveItem(this.handle as HItem);
+        isRemoved = true;
+        break;
+
+      case "player":
+        throw new Error("Unable remove player");
     }
 
     if (isRemoved) {
       this.handle = null;
-
-      this.dispatchEvent(new RemoveHandleEvent(this));
     }
   }
 
