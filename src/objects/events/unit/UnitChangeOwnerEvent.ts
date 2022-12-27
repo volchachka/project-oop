@@ -4,7 +4,6 @@ import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitChangeOwnerEventDetail extends UnitEventDetail {
-  //TODO: Когда будет класс Player, заменить тип на Player
   previewOwner: GamePlayer;
 }
 
