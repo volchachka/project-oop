@@ -1,16 +1,16 @@
 import { ObjectStorage } from "../../../services/ObjectStorage";
+import { Destructable } from "../../Destructable";
+import { Item } from "../../Item";
 import { Unit } from "../../Unit";
+import { Widget } from "../../Widget";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitIssuedTargetOrderEventDetail extends UnitEventDetail {
   issuedOrderId: number;
-  //TODO: Когда будет класс Widget заменить на Widget
-  orderTarget: HWidget;
+  orderTarget: Widget;
   orderTargetUnit: Unit;
-  //TODO: Когда будет класс Item заменить на Item
-  orderTargetItem: HItem;
-  //TODO: Когда будет класс Destructable заменить на Destructable
-  orderTargetDestructable: HDestructable;
+  orderTargetItem: Item;
+  orderTargetDestructable: Destructable;
 }
 
 export interface UnitIssuedTargetOrderEvent {
@@ -23,10 +23,10 @@ const snapshotUnitEvent = (): UnitIssuedTargetOrderEventDetail => {
   return {
     triggerUnit: objectStorage.getOrWrap(GetTriggerUnit()),
     issuedOrderId: GetIssuedOrderId(),
-    orderTarget: GetOrderTarget(),
+    orderTarget: objectStorage.getOrWrap(GetOrderTarget()),
     orderTargetUnit: objectStorage.getOrWrap(GetOrderTargetUnit()),
-    orderTargetDestructable: GetOrderTargetDestructable(),
-    orderTargetItem: GetOrderTargetItem(),
+    orderTargetDestructable: objectStorage.getOrWrap(GetOrderTargetDestructable()),
+    orderTargetItem: objectStorage.getOrWrap(GetOrderTargetItem()),
   };
 };
 
