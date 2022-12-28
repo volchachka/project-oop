@@ -12,7 +12,7 @@ export interface PlayerResearchedEventDetail {
 
 const objectStorage = ObjectStorage.getInstance();
 
-const snapshotPlayerEvent = (): PlayerResearchedEventDetail =>{
+const snapshotResearchedPlayerEvent = (): PlayerResearchedEventDetail =>{
     return {
         triggerPlayer: objectStorage.getOrWrap(GetTriggerPlayer()),
         researching: GetResearched(),
@@ -22,6 +22,6 @@ const snapshotPlayerEvent = (): PlayerResearchedEventDetail =>{
 
 export class PlayerResearchedEvent extends PlayerEvent {
     constructor( type:string, detail: PlayerResearchedEventDetail | null ){
-        super( type, detail || snapshotPlayerEvent());
+        super( type, detail || snapshotResearchedPlayerEvent());
     };
 }
