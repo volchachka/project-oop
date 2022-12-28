@@ -1,10 +1,10 @@
 import { ObjectStorage } from "../../../services/ObjectStorage";
+import { Item } from "../../Item";
 import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitDropItemEventDetail extends UnitEventDetail {
-  //TODO: Когда будет класс Item, заменить на Item
-  droppedItem: HItem;
+  droppedItem: Item;
 }
 
 export interface UnitDropItemEvent {
@@ -16,7 +16,7 @@ const objectStorage = ObjectStorage.getInstance();
 const snapshotUnitEvent = (): UnitDropItemEventDetail => {
   return {
     triggerUnit: objectStorage.getOrWrap(GetTriggerUnit()),
-    droppedItem: GetManipulatedItem(),
+    droppedItem: objectStorage.getOrWrap(GetManipulatedItem()),
   };
 };
 

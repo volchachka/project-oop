@@ -1,4 +1,6 @@
 import { ObjectStorage } from "../../../services/ObjectStorage";
+import { Destructable } from "../../Destructable";
+import { Item } from "../../Item";
 import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
@@ -10,10 +12,8 @@ export interface UnitSpellEventDetail extends UnitEventDetail {
   targetLocation: HLocation;
   targetX: number;
   targetY: number;
-  //TODO: Когда будет класс Destructable, заменить на Destructable
-  targetDestructable: HDestructable;
-  //TODO: Когда будет класс Item заменить на Item
-  targetItem: HItem;
+  targetDestructable: Destructable;
+  targetItem: Item;
   targetUnit: Unit;
 }
 
@@ -31,8 +31,8 @@ const snapshotUnitEvent = (): UnitSpellEventDetail => {
     targetLocation: GetSpellTargetLoc(),
     targetX: GetSpellTargetX(),
     targetY: GetSpellTargetY(),
-    targetDestructable: GetSpellTargetDestructable(),
-    targetItem: GetSpellTargetItem(),
+    targetDestructable: objectStorage.getOrWrap(GetSpellTargetDestructable()),
+    targetItem: objectStorage.getOrWrap(GetSpellTargetItem()),
     targetUnit: objectStorage.getOrWrap(GetSpellTargetUnit()),
   };
 };

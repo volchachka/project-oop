@@ -1,10 +1,10 @@
 import { ObjectStorage } from "../../../services/ObjectStorage";
+import { GamePlayer } from "../../GamePlayer";
 import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitChangeOwnerEventDetail extends UnitEventDetail {
-  //TODO: Когда будет класс Player, заменить тип на Player
-  previewOwner: HPlayer;
+  previewOwner: GamePlayer;
 }
 
 export interface UnitChangeOwnerEvent {
@@ -16,7 +16,7 @@ const objectStorage = ObjectStorage.getInstance();
 const snapshotUnitEvent = (): UnitChangeOwnerEventDetail => {
   return {
     triggerUnit: objectStorage.getOrWrap(GetTriggerUnit()),
-    previewOwner: GetChangingUnitPrevOwner(),
+    previewOwner: objectStorage.getOrWrap(GetChangingUnitPrevOwner()),
   };
 };
 

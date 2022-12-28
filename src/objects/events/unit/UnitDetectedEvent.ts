@@ -1,10 +1,11 @@
 import { ObjectStorage } from "../../../services/ObjectStorage";
+import { GamePlayer } from "../../GamePlayer";
 import { Unit } from "../../Unit";
 import { UnitEvent, UnitEventDetail } from "./UnitEvent";
 
 export interface UnitDetectEventDetail extends UnitEventDetail {
   //TODO: Когда будет класс Player, заменить на Player
-  detectingPlayer: HPlayer;
+  detectingPlayer: GamePlayer;
 }
 
 export interface UnitDetectEvent {
@@ -16,7 +17,7 @@ const objectStorage = ObjectStorage.getInstance();
 const snapshotUnitEvent = (): UnitDetectEventDetail => {
   return {
     triggerUnit: objectStorage.getOrWrap(GetTriggerUnit()),
-    detectingPlayer: GetEventDetectingPlayer(),
+    detectingPlayer: objectStorage.getOrWrap(GetEventDetectingPlayer()),
   };
 };
 
